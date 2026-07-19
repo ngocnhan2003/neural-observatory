@@ -1,0 +1,70 @@
+{
+  "name": "neural-observatory",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A local-first 3D neural observatory for Claude Code, Codex and OpenAI-compatible telemetry.",
+  "author": "ngocnhan2003",
+  "license": "MIT",
+  "main": "./out/main/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "npm run typecheck && electron-vite build",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "package:win": "npm run build && electron-builder --win nsis",
+    "package:dir": "npm run build && electron-builder --dir"
+  },
+  "dependencies": {
+    "@react-three/drei": "latest",
+    "@react-three/fiber": "latest",
+    "@react-three/postprocessing": "latest",
+    "lucide-react": "latest",
+    "postprocessing": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-is": "^19.2.7",
+    "recharts": "latest",
+    "three": "latest",
+    "ws": "latest",
+    "zod": "latest",
+    "zustand": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "@types/three": "latest",
+    "@types/ws": "latest",
+    "@vitejs/plugin-react": "^5.1.1",
+    "electron": "latest",
+    "electron-builder": "latest",
+    "electron-vite": "latest",
+    "typescript": "latest",
+    "vite": "^7.3.6"
+  },
+  "build": {
+    "appId": "dev.noah.neural-observatory",
+    "productName": "Neural Observatory",
+    "asar": true,
+    "npmRebuild": false,
+    "files": [
+      "out/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "output": "release"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "artifactName": "${productName}-${version}-setup.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  }
+}
